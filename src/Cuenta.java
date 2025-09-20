@@ -48,28 +48,35 @@ public class Cuenta {
     public double ingresar (double monto){
         if (monto<0){
             System.out.println("Valores no validos");
+            return this.saldo;
         }else {
-            System.out.println("Saldo actual= ");
+            return this.saldo +=monto;
         }
-        return this.saldo +=monto;
+
     }
 
     public double retirar (double monto_retiro){
         if (monto_retiro<0){
             System.out.println("Valores no validos");
+            return this.saldo;
+        }else if (monto_retiro> this.saldo) {
+            System.out.println("No puede retirar un monto mayor a lo que se encuentra en su cuenta");
+            return this.saldo;
         }else {
-            System.out.println("Saldo actual= ");
+            System.out.println("Accion completada, saldo actual: ");
+            return this.saldo -= monto_retiro;
         }
-        return this.saldo -= monto_retiro;
-    }
+}
 
     public double extraccion_rapida (double monto){
         double descuento=0;
         if (this.saldo < 10000){
             System.out.println("No tiene saldo");
+            return this.saldo;
         } else {
             descuento= this.saldo* 0.2;
+            System.out.println("Ha retirado con exito");
+            return this.saldo -=descuento;
         }
-        return this.saldo -=descuento;
     }
 }

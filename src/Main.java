@@ -27,32 +27,36 @@ public class Main {
 
             System.out.println("Bienvenido a su cuenta");
             System.out.println("Que accion desea realizar");
-            System.out.println("2. Ingresar dinero");
-            System.out.println("3. Retirar dinero");
-            System.out.println("4. Extraccion Rapida");
-            System.out.println("5. Consultar Saldo");
-            System.out.println("6. Salir ");
+            System.out.println("1. Ingresar dinero");
+            System.out.println("2. Retirar dinero");
+            System.out.println("3. Extraccion Rapida");
+            System.out.println("4. Consultar Saldo");
+            System.out.println("5. Salir ");
             op= opcion.nextInt();
 
             switch (op){
                 case 1 :
                     Scanner ingresar= new Scanner(System.in);
-                    double monto=0;
                     System.out.println("Escriba el monto que desea añadir a la cuenta");
 
                     p1.ingresar(ingresar.nextDouble());
-                    System.out.println(p1.getSaldo());
+                    System.out.println("Saldo actual = " + p1.getSaldo());
                     break;
                 case 2 :
                     Scanner retirar= new Scanner(System.in);
-                    double monto_retiro=0;
-                    System.out.println("Escriba el monto que desea añadir a la cuenta");
+                    System.out.println("Escriba el monto que desea retirar de la cuenta");
+
                     p1.retirar(retirar.nextDouble());
-                    System.out.println(p1.getSaldo());
+                    System.out.println("Saldo actual = " + p1.getSaldo());
                     break;
                 case 3:
+                    Scanner retiro_rapido= new Scanner(System.in);
+                    p1.extraccion_rapida(retiro_rapido.nextDouble());
+
+                    System.out.println("Saldo actual = " + p1.getSaldo());
                     break;
                 case 4:
+                    System.out.println("Saldo actual = " + p1.getSaldo());
                     break;
                 case 5:
                     break;
