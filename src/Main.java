@@ -3,8 +3,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         menu_cuentas();
-
-
     }
 
     public static void menu_cuentas(){
@@ -14,6 +12,7 @@ public class Main {
         int opcion_cuenta=0;
 
         List<Cuenta>lstLista=new ArrayList<>();
+
         while (opcion_cuenta!=5) {
             Cuenta p1= new Cuenta();
             System.out.println("Que accion desea realizar");
@@ -23,6 +22,7 @@ public class Main {
             System.out.println("4. Buscar cuenta");
             System.out.println("5. Salir ");
             opcion_cuenta= opcion.nextInt();
+
             switch (opcion_cuenta){
                 case 1 :
                     System.out.println("Ingrese su numero de cuenta");
@@ -57,20 +57,27 @@ public class Main {
                     String buscar;
                     System.out.println("Ingrese el numero de cuenta que desee buscar");
                     buscar = buscar_cuenta.next();
+                    Cuenta p=null;
                     for (Cuenta c :lstLista){
                             if (lstLista.isEmpty()){
                                 System.out.println("No hay ninguna cuenta");
                             }else if (c.getNumero_cuenta().equalsIgnoreCase(buscar)){
-                                menu();
+                                p=c;
+                            } else if (p != null) {
+                                menu(p);
                             }
                     }
                     break;
+                case 5:
+                    System.out.println("Saliendo del sistema");
+                    break;
+                default:
+                    System.out.println("Opccion incorrecta");
             }
         }
-
     }
-    public static void menu(){
-        Cuenta p1= new Cuenta();
+    public static void menu(Cuenta p){
+
         Scanner opcion= new Scanner(System.in);
         int op = 0;
         while (op !=5){
@@ -88,31 +95,28 @@ public class Main {
                 case 1 :
                     Scanner ingresar= new Scanner(System.in);
                     System.out.println("Escriba el monto que desea añadir a la cuenta");
-
-                    p1.ingresar(ingresar.nextDouble());
-                    System.out.println("Saldo actual = " + p1.getSaldo());
+                    p.ingresar(ingresar.nextDouble());
+                    System.out.println("Saldo actual = " + p.getSaldo());
                     break;
                 case 2 :
                     Scanner retirar= new Scanner(System.in);
                     System.out.println("Escriba el monto que desea retirar de la cuenta");
-
-                    p1.retirar(retirar.nextDouble());
-                    System.out.println("Saldo actual = " + p1.getSaldo());
+                    p.retirar(retirar.nextDouble());
+                    System.out.println("Saldo actual = " + p.getSaldo());
                     break;
                 case 3:
                     Scanner retiro_rapido= new Scanner(System.in);
-                    p1.extraccion_rapida(retiro_rapido.nextDouble());
-
-                    System.out.println("Saldo actual = " + p1.getSaldo());
+                    p.extraccion_rapida(retiro_rapido.nextDouble());
+                    System.out.println("Saldo actual = " + p.getSaldo());
                     break;
                 case 4:
-                    System.out.println("Saldo actual = " + p1.getSaldo());
+                    System.out.println("Saldo actual = " + p.getSaldo());
                     break;
                 case 5:
+                    System.out.println("Saliendo del sistema");
                     break;
                 default:
                     System.out.println("Opccion incorrecta");
-
             }
         }
     }
